@@ -5,10 +5,7 @@
 # copy of the License from http://www.apache.org/licenses/LICENSE-2.0
 
 package Devel::Autoflush;
-$Devel::Autoflush::VERSION = '0.03';
-
-# convert '1.23_45' to 1.2345
-$Devel::Autoflush::VERSION = eval $Devel::Autoflush::VERSION; 
+$Devel::Autoflush::VERSION = '0.04';
 
 my $old = select STDOUT; $|++;
 select STDERR; $|++;

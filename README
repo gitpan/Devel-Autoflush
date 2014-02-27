@@ -2,10 +2,10 @@ NAME
     Devel::Autoflush - Set autoflush from the command line
 
 VERSION
-    This documentation describes version 0.05.
+    version 0.06
 
 SYNOPSIS
-      perl -MDevel::Autoflush Makefile.PL
+     perl -MDevel::Autoflush Makefile.PL
 
 DESCRIPTION
     This module is a hack to set autoflush for STDOUT and STDERR from the
@@ -14,9 +14,9 @@ DESCRIPTION
 
     This often happens when prompting:
 
-       # guess.pl
-       print "Guess a number: ";
-       my $n = <STDIN>;
+      # guess.pl
+      print "Guess a number: ";
+      my $n = <STDIN>;
 
     As long as the output is going to a terminal, the prompt is flushed when
     STDIN is read. However, if the output is being piped, the print
@@ -24,42 +24,45 @@ DESCRIPTION
     the program will silently appear to hang while waiting for input. This
     might happen with 'tee':
 
-       $ perl guess.pl | tee capture.out
+      $ perl guess.pl | tee capture.out
 
     Use Devel::Autoflush to work around this:
 
-       $ perl -MDevel::Autoflush guess.pl | tee capture.out
+      $ perl -MDevel::Autoflush guess.pl | tee capture.out
 
     Or set it in "PERL5OPT":
 
-       $ export PERL5OPT=-MDevel::Autoflush
-       $ perl guess.pl | tee capture.out
+      $ export PERL5OPT=-MDevel::Autoflush
+      $ perl guess.pl | tee capture.out
 
-BUGS
-    Please report any bugs or feature using the CPAN Request Tracker. Bugs
-    can be submitted through the web interface at
-    <http://rt.cpan.org/Dist/Display.html?Queue=Devel-Autoflush>
+    = SEE ALSO
 
-    When submitting a bug or request, please include a test-file or a patch
-    to an existing test-file that illustrates the bug or desired feature.
-
-SEE ALSO
     *   CPANPLUS::Internals::Utils::Autoflush -- same idea but STDOUT only
-        and only available as part of the full CPANPLUS distribution
+        and
+
+        only available as part of the full CPANPLUS distribution
+
+SUPPORT
+  Bugs / Feature Requests
+    Please report any bugs or feature requests through the issue tracker at
+    <https://github.com/dagolden/Devel-Autoflush/issues>. You will be
+    notified automatically of any progress on your issue.
+
+  Source Code
+    This is open source software. The code repository is available for
+    public review and contribution under the terms of the license.
+
+    <https://github.com/dagolden/Devel-Autoflush>
+
+      git clone https://github.com/dagolden/Devel-Autoflush.git
 
 AUTHOR
-    David A. Golden (DAGOLDEN)
+    David Golden <dagolden@cpan.org>
 
 COPYRIGHT AND LICENSE
-    Copyright (c) 2008-2009 by David A. Golden
+    This software is Copyright (c) 2014 by David Golden.
 
-    Licensed under the Apache License, Version 2.0 (the "License"); you may
-    not use this file except in compliance with the License. You may obtain
-    a copy of the License at <http://www.apache.org/licenses/LICENSE-2.0>
+    This is free software, licensed under:
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+      The Apache License, Version 2.0, January 2004
 

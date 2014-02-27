@@ -1,47 +1,42 @@
-# Copyright (c) 2008-2009 by David Golden. All rights reserved.
-# Licensed under Apache License, Version 2.0 (the "License").
-# You may not use this file except in compliance with the License.
-# A copy of the License was distributed with this file or you may obtain a 
-# copy of the License from http://www.apache.org/licenses/LICENSE-2.0
-
 package Devel::Autoflush;
-$Devel::Autoflush::VERSION = '0.05';
+# ABSTRACT: Set autoflush from the command line
+our $VERSION = '0.06'; # VERSION
 
 my $kwalitee_nocritic = << 'END';
 # can't use strict as older stricts load Carp and we can't allow side effects
 use strict;  
 END
 
-my $old = select STDOUT; $|++;
-select STDERR; $|++;
+my $old = select STDOUT;
+$|++;
+select STDERR;
+$|++;
 select $old;
 
 1;
 
 __END__
 
-#--------------------------------------------------------------------------#
-# pod documentation 
-#--------------------------------------------------------------------------#
+=pod
 
-=begin wikidoc
+=encoding UTF-8
 
-= NAME
+=head1 NAME
 
 Devel::Autoflush - Set autoflush from the command line
 
-= VERSION
+=head1 VERSION
 
-This documentation describes version %%VERSION%%.
+version 0.06
 
-= SYNOPSIS
+=head1 SYNOPSIS
 
  perl -MDevel::Autoflush Makefile.PL
 
-= DESCRIPTION
+=head1 DESCRIPTION
 
 This module is a hack to set autoflush for STDOUT and STDERR from the command
-line or from {PERL5OPT} for code that needs it but doesn't have it.
+line or from C<PERL5OPT> for code that needs it but doesn't have it.
 
 This often happens when prompting:
 
@@ -60,44 +55,52 @@ Use Devel::Autoflush to work around this:
 
   $ perl -MDevel::Autoflush guess.pl | tee capture.out
 
-Or set it in {PERL5OPT}:
+Or set it in C<PERL5OPT>:
 
   $ export PERL5OPT=-MDevel::Autoflush
   $ perl guess.pl | tee capture.out
 
-= BUGS
-
-Please report any bugs or feature using the CPAN Request Tracker.  
-Bugs can be submitted through the web interface at 
-[http://rt.cpan.org/Dist/Display.html?Queue=Devel-Autoflush]
-
-When submitting a bug or request, please include a test-file or a patch to an
-existing test-file that illustrates the bug or desired feature.
-
 = SEE ALSO
 
-* [CPANPLUS::Internals::Utils::Autoflush] -- same idea but STDOUT only and 
+=over 4
+
+=item *
+
+L<CPANPLUS::Internals::Utils::Autoflush> -- same idea but STDOUT only and 
+
 only available as part of the full CPANPLUS distribution
 
-= AUTHOR
+=back
 
-David A. Golden (DAGOLDEN)
+=for :stopwords cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff irc mailto metadata placeholders metacpan
 
-= COPYRIGHT AND LICENSE
+=head1 SUPPORT
 
-Copyright (c) 2008-2009 by David A. Golden
+=head2 Bugs / Feature Requests
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at 
-[http://www.apache.org/licenses/LICENSE-2.0]
+Please report any bugs or feature requests through the issue tracker
+at L<https://github.com/dagolden/Devel-Autoflush/issues>.
+You will be notified automatically of any progress on your issue.
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+=head2 Source Code
 
-=end wikidoc
+This is open source software.  The code repository is available for
+public review and contribution under the terms of the license.
+
+L<https://github.com/dagolden/Devel-Autoflush>
+
+  git clone https://github.com/dagolden/Devel-Autoflush.git
+
+=head1 AUTHOR
+
+David Golden <dagolden@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2014 by David Golden.
+
+This is free software, licensed under:
+
+  The Apache License, Version 2.0, January 2004
 
 =cut
